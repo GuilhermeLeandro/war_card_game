@@ -1,4 +1,4 @@
-// Classe card.
+# Card Class 
 class Card:
     SUITS = ["Copas", "Ouros", "Paus", "Espadas"]
     RANKS = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Valete", "Dama", "Rei", "Ás"]
