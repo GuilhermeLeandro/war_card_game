@@ -1,4 +1,3 @@
-# src/ui/game_screen.py
 import pygame
 import time
 import os

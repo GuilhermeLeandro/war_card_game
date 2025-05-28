@@ -1,4 +1,3 @@
-# src/game/war_game_logic.py
 from src.models.deck import Deck
 from src.models.player import Player
 from src.structures.doubly_linked_list import DoublyLinkedList

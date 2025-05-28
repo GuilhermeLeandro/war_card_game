@@ -1,4 +1,3 @@
-# src/ui/base_screen.py
 import pygame
 
 class BaseScreen:

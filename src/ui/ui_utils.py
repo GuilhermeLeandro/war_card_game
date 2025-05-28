@@ -1,4 +1,3 @@
-# src/ui/ui_utils.py
 import pygame
 
 def draw_linear_gradient_rect(surface, rect, color_start, color_end, vertical=True):

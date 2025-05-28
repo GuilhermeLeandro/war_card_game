@@ -1,4 +1,3 @@
-# src/ui/rules_screen.py
 import pygame
 from . import constants as C
 from .base_screen import BaseScreen

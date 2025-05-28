@@ -1,4 +1,3 @@
-# run_game.py
 import pygame
 import os
 import sys

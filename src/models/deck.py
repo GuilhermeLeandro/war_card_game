@@ -1,4 +1,3 @@
-# src/models/deck.py
 import random
 from src.models.card import Card
 from src.structures.stack import Stack # Usando sua Stack personalizada

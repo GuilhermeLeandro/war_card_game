@@ -1,4 +1,3 @@
-# src/ui/log_display.py
 import pygame
 from . import constants as C
 from .elements import Button

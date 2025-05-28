@@ -1,4 +1,3 @@
-# src/ui/menu_screen.py
 import pygame
 import os
 from .base_screen import BaseScreen

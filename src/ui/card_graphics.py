@@ -1,4 +1,3 @@
-# src/ui/card_graphics.py
 import pygame
 import os
 from . import constants as C

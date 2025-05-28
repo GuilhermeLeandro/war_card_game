@@ -1,5 +1,3 @@
-# src/structures/queue.py
-
 class Queue:
     def __init__(self):
         self._items = [] # Usará lista nativa do Python

@@ -1,4 +1,3 @@
-# src/structures/stack.py
 class Stack:
     def __init__(self):
         self._items = []

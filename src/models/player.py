@@ -1,4 +1,3 @@
-# src/models/player.py
 from src.structures.queue import Queue
 
 class Player:

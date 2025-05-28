@@ -1,4 +1,3 @@
-# src/ui/elements.py
 import pygame
 import os
 from models.card import Card as CardModel 

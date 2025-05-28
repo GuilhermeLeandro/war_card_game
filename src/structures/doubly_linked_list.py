@@ -1,4 +1,3 @@
-# src/structures/doubly_linked_list.py
 class DoublyLinkedListNode:
     def __init__(self, data=None):
         self.data = data

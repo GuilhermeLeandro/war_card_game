@@ -1,4 +1,3 @@
-# src/ui/gui_manager.py
 import pygame
 import sys
 import os

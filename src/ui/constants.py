@@ -1,4 +1,3 @@
-# src/ui/constants.py
 import pygame
 import os
 
