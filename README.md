@@ -230,5 +230,3 @@ A `Lista Duplamente Encadeada` (de `src/structures/doubly_linked_list.py`) é us
         ```bash
         python3 run_game.py
         ```
-
-Aproveite o Jogo de Guerra!
