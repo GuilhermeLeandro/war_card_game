@@ -2,11 +2,6 @@ import pygame
 import os
 import sys
 
-# --- Configuração do Caminho de Importação (sys.path) ---
-# O Python procura módulos para importar em uma lista de diretórios chamada sys.path.
-# Por padrão, o diretório do script atual (onde run_game.py está) é incluído.
-# No entanto, nossos módulos principais (ui, game, models, etc.) estão dentro de uma subpasta 'src'.
-
 # 1. Obtém o caminho absoluto para o diretório onde este script (run_game.py) está.
 #    Ex: /caminho/para/o/seu/projeto/WAR_CARD_GAME/
 project_root = os.path.dirname(os.path.abspath(__file__))
