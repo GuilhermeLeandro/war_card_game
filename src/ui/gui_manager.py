@@ -11,7 +11,12 @@ from . import card_graphics
 class GUIManager:
     def __init__(self):
         pygame.init(); pygame.mixer.init(); pygame.font.init()
-        self.screen = pygame.display.set_mode((C.SCREEN_WIDTH, C.SCREEN_HEIGHT))
+        self.opengl_presenter = None
+        self.display_surface = None
+        self.screen = None
+        # OpenGL habilitado por padrão; defina WAR_USE_OPENGL=0 para forçar o modo Pygame puro.
+        self.use_opengl = os.getenv("WAR_USE_OPENGL", "1") == "1"
+        self._init_display_surfaces()
         pygame.display.set_caption("Jogo de Guerra"); self.clock = pygame.time.Clock()
         if hasattr(card_graphics, 'preload_card_images'): card_graphics.preload_card_images()
         self.active_screen = None; self.game_logic_instance: WarGameLogic = None
@@ -95,10 +100,58 @@ class GUIManager:
             if self.active_screen:
                 self.active_screen.update(dt)
                 self.active_screen.render()
-            
-            pygame.display.flip()
+            self._present_frame()
             
         if self.active_screen and hasattr(self.active_screen, 'cleanup_before_quit'):
             self.active_screen.cleanup_before_quit()
         pygame.quit()
         sys.exit()
+
+    def _init_display_surfaces(self):
+        if self.use_opengl and self._try_init_opengl_presenter():
+            return
+        self.display_surface = pygame.display.set_mode((C.SCREEN_WIDTH, C.SCREEN_HEIGHT))
+        self.screen = self.display_surface
+        if self.use_opengl:
+            print("[OpenGL] Falha ou desativado; usando modo Pygame padrão.")
+
+    def _try_init_opengl_presenter(self):
+        try:
+            from .opengl_presenter import OpenGLPresenter
+        except Exception as e:
+            print(f"[OpenGL] PyOpenGL indisponivel: {e}")
+            return False
+        try:
+            pygame.display.gl_set_attribute(pygame.GL_DOUBLEBUFFER, 1)
+            pygame.display.gl_set_attribute(pygame.GL_MULTISAMPLEBUFFERS, 1)
+            pygame.display.gl_set_attribute(pygame.GL_MULTISAMPLESAMPLES, 4)
+            pygame.display.gl_set_attribute(pygame.GL_CONTEXT_MAJOR_VERSION, 2)
+            pygame.display.gl_set_attribute(pygame.GL_CONTEXT_MINOR_VERSION, 1)
+            self.display_surface = pygame.display.set_mode((C.SCREEN_WIDTH, C.SCREEN_HEIGHT),
+                                                           pygame.OPENGL | pygame.DOUBLEBUF)
+            self.opengl_presenter = OpenGLPresenter(C.SCREEN_WIDTH, C.SCREEN_HEIGHT)
+            self.screen = pygame.Surface((C.SCREEN_WIDTH, C.SCREEN_HEIGHT), pygame.SRCALPHA).convert_alpha()
+            print("[OpenGL] Renderizacao com vinheta sutil ativada.")
+            return True
+        except Exception as gl_err:
+            print(f"[OpenGL] Falha ao iniciar contexto, voltando ao modo normal: {gl_err}")
+            self.opengl_presenter = None
+            return False
+
+    def _present_frame(self):
+        if self.opengl_presenter:
+            try:
+                self.opengl_presenter.present_surface(self.screen)
+            except Exception as gl_err:
+                print(f"[OpenGL] Erro durante apresentacao, desativando OpenGL: {gl_err}")
+                self._fallback_to_regular_surface()
+        pygame.display.flip()
+
+    def _fallback_to_regular_surface(self):
+        self.display_surface = pygame.display.set_mode((C.SCREEN_WIDTH, C.SCREEN_HEIGHT))
+        self.screen = self.display_surface
+        self.opengl_presenter = None
+        if self.active_screen:
+            self.active_screen.screen = self.screen
+            if hasattr(self.active_screen, "log_display_panel"):
+                self.active_screen.log_display_panel.screen = self.screen
