@@ -182,3 +182,4 @@ class WarGameLogic:
         if not p1_has and p2_has: return {"winner": self.player2.name, "reason": f"{self.player1.name} sem cartas."}
         if not p1_has and not p2_has: return {"winner": "Empate", "reason": "Ambos sem cartas."}
         return None
+
