@@ -1,5 +1,6 @@
 import unittest
 from src.structures.stack import Stack
+# Testes unitários para a classe Stack
 
 class TestStack(unittest.TestCase):
     def setUp(self):
