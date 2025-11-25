@@ -42,7 +42,7 @@ def test_shuffle_changes_order():
 
     deck1.shuffle()
 
-    # Existe a possibilidade mínima de embaralhar e sair igual, então o ideal seria comparar conteúdo, não ordem
+    # Existe a chance mínima de embaralhar e sair igual, então o ideal seria comparar conteúdo, não ordem
     assert deck1.size() == 52
     assert deck2.size() == 52
 
