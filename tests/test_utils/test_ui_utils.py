@@ -1,6 +1,7 @@
 import unittest
 import pygame
 from src.ui.ui_utils import draw_linear_gradient_rect
+# Testa gradiente vertical
 
 
 class TestDrawLinearGradientRect(unittest.TestCase):
