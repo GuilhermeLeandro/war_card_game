@@ -1,5 +1,6 @@
 import unittest
 from src.structures.queue import Queue
+# Testes da classe Queue
 
 class TestQueue(unittest.TestCase):
     def setUp(self):
