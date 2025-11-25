@@ -15,7 +15,7 @@ class TestWarGameLogic(unittest.TestCase):
         self.assertEqual(state['current_round'], 0)
 
     def test_play_single_round_updates_round_and_hand_size(self):
-        """Testa se jogar uma rodada atualiza a rodada e muda o tamanhos das mãos."""
+        """Testa se jogar uma rodada atualiza a rodada e muda tamanhos das mãos."""
         self.game.play_round()
         state = self.game.get_game_state_for_ui()
         self.assertEqual(state['current_round'], 1)
