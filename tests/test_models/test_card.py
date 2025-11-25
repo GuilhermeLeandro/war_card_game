@@ -39,4 +39,4 @@ def test_hash_and_equality():
     card_set = set()
     card_set.add(card1)
 
-    assert card2 in card_set  # Testa se __hash__ e __eq__ funcionam corretamente
+    assert card2 in card_set  # Testa se  __hash__ e __eq__ funcionam corretamente
