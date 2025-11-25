@@ -45,5 +45,5 @@ def test_play_card():
     assert player.hand_size() == 0
     assert not player.has_cards()
 
-    # Tentar jogar sem cartas retorna None
+    # Tentar jogar sem carta retorna None
     assert player.play_card() is None
