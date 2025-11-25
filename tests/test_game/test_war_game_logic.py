@@ -23,7 +23,7 @@ class TestWarGameLogic(unittest.TestCase):
         self.assertEqual(total_cards, 52)  # Nenhuma carta desaparece
 
     def test_game_log_is_updated_after_round(self):
-        """Testa se o log do jogo é atualizado após uma rodada."""
+        """Testa se o log do jogo é atualizado depois de uma rodada."""
         self.game.play_round()
         log = self.game.get_game_log_entries()
         self.assertEqual(len(log), 1)
